@@ -5,9 +5,13 @@
  */
 package com.seamfix.controller;
 
+import com.seamfix.dto.Awesome;
+import com.seamfix.service.SeamfixService;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 
 /**
  *
@@ -17,11 +21,12 @@ import javax.ws.rs.Path;
 @Path("seamfix")
 public class SeamfixController {
 
-    SeamfixService smfix;
+    @EJB
+    private SeamfixService smfix;
 
     @GET
-    @Path(value = "")
-    public Awesome quadraticFormaula(int a, int b, int c) {
+    @Path("quadratic_formula/{a}/{b}/{c}")
+    public Awesome quadraticFormula(@PathParam("a") int a, @PathParam("b") int b, @PathParam("c") int c) {
         Awesome awe;
 
         awe = smfix.quadraticService(a, b, c);
